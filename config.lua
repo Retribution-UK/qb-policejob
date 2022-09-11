@@ -17,38 +17,38 @@ Config.LicenseRank = 2
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.Locations = {
     ["duty"] = {
-        [1] = vector3(440.085, -974.924, 30.689),
+        [1] = vector3(441.79, -982.06, 30.95),
         [2] = vector3(-449.811, 6012.909, 31.815),
     },
     ["vehicle"] = {
-        [1] = vector4(448.159, -1017.41, 28.562, 90.654),
-        [2] = vector4(471.13, -1024.05, 28.17, 274.5),
+        [1] = vector4(457.57, -981.21, 25.51, 92.2),
+        [2] = vector4(457.96, -992.71, 25.51, 90.63),
         [3] = vector4(-455.39, 6002.02, 31.34, 87.93),
     },
     ["stash"] = {
-        [1] = vector3(453.075, -980.124, 30.889),
+        [1] = vector3(460.42, -984.85, 30.69),
     },
     ["impound"] = {
-        [1] = vector3(436.68, -1007.42, 27.32),
-        [2] = vector3(-436.14, 5982.63, 31.34),
+        [1] = vector4(479.28, -1021.68, 28.0, 272.51),
+        [2] = vector4(-436.14, 5982.63, 31.34, 136.0),
     },
     ["helicopter"] = {
-        [1] = vector4(449.168, -981.325, 43.691, 87.234),
+        [1] = vector4(449.4, -981.33, 43.69, 86.29),
         [2] = vector4(-475.43, 5988.353, 31.716, 31.34),
     },
     ["armory"] = {
-        [1] = vector3(462.23, -981.12, 30.68),
+        [1] = vector3(482.46, -995.27, 30.69),
     },
     ["trash"] = {
-        [1] = vector3(439.0907, -976.746, 30.776),
+        [1] = vector3(485.2, -993.25, 30.69),
     },
     ["fingerprint"] = {
-        [1] = vector3(460.9667, -989.180, 24.92),
+        [1] = vector3(473.09, -1007.56, 26.27),
     },
     ["evidence"] = {
-        [1] = vector3(442.1722, -996.067, 30.689),
-        [2] = vector3(451.7031, -973.232, 30.689),
-        [3] = vector3(455.1456, -985.462, 30.689),
+        [1] = vector3(474.59, -996.71, 26.27),
+        [2] = vector3(474.61, -994.38, 26.27),
+        [3] = vector3(472.41, -991.21, 26.27),
     },
     ["stations"] = {
         [1] = {label = "Police Station", coords = vector4(428.23, -984.28, 29.76, 3.5)},
@@ -294,7 +294,7 @@ Config.Items = {
         [7] = {
             name = "pistol_ammo",
             price = 0,
-            amount = 5,
+            amount = 25,
             info = {},
             type = "item",
             slot = 7,
@@ -303,7 +303,7 @@ Config.Items = {
         [8] = {
             name = "smg_ammo",
             price = 0,
-            amount = 5,
+            amount = 25,
             info = {},
             type = "item",
             slot = 8,
@@ -312,7 +312,7 @@ Config.Items = {
         [9] = {
             name = "shotgun_ammo",
             price = 0,
-            amount = 5,
+            amount = 25,
             info = {},
             type = "item",
             slot = 9,
@@ -321,7 +321,7 @@ Config.Items = {
         [10] = {
             name = "rifle_ammo",
             price = 0,
-            amount = 5,
+            amount = 25,
             info = {},
             type = "item",
             slot = 10,
