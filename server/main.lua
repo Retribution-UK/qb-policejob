@@ -464,7 +464,7 @@ RegisterNetEvent('police:server:SendTrackerLocation', function(coords, requestId
     TriggerClientEvent("qb-phone:client:addPoliceAlert", requestId, alertData)
 end)
 
-QBCore.Commands.Add('911p', Lang:t("commands.police_report"), {{name='message', help= Lang:t("commands.message_sent")}}, false, function(source, args)
+--[[ QBCore.Commands.Add('911p', Lang:t("commands.police_report"), {{name='message', help= Lang:t("commands.message_sent")}}, false, function(source, args)
 	local src = source
     local message
 	if args[1] then message = table.concat(args, " ") else message = Lang:t("commands.civilian_call") end
@@ -478,7 +478,7 @@ QBCore.Commands.Add('911p', Lang:t("commands.police_report"), {{name='message', 
             TriggerClientEvent('police:client:policeAlert', v.PlayerData.source, coords, message)
         end
     end
-end)
+end) ]]
 
 -- Items
 QBCore.Functions.CreateUseableItem("handcuffs", function(source)
@@ -539,9 +539,9 @@ QBCore.Functions.CreateCallback('police:GetDutyPlayers', function(_, cb)
     for _, v in pairs(players) do
         if v and v.PlayerData.job.name == "police" and v.PlayerData.job.onduty then
             dutyPlayers[#dutyPlayers+1] = {
-                source = Player.PlayerData.source,
-                label = Player.PlayerData.metadata["callsign"],
-                job = Player.PlayerData.job.name
+                source = v.PlayerData.source,
+                label = v.PlayerData.metadata["callsign"],
+                job = v.PlayerData.job.name
             }
         end
     end
@@ -646,7 +646,7 @@ RegisterNetEvent('police:server:EscortPlayer', function(playerId)
     local targetPed = GetPlayerPed(playerId)
     local playerCoords = GetEntityCoords(playerPed)
     local targetCoords = GetEntityCoords(targetPed)
-    if #(playerCoords - targetCoords) > 2.5 then return DropPlayer(src, "Attempted exploit abuse") end
+    --if #(playerCoords - targetCoords) > 2.5 then return DropPlayer(src, "Attempted exploit abuse") end
 
     local Player = QBCore.Functions.GetPlayer(source)
     local EscortPlayer = QBCore.Functions.GetPlayer(playerId)
@@ -665,7 +665,7 @@ RegisterNetEvent('police:server:KidnapPlayer', function(playerId)
     local targetPed = GetPlayerPed(playerId)
     local playerCoords = GetEntityCoords(playerPed)
     local targetCoords = GetEntityCoords(targetPed)
-    if #(playerCoords - targetCoords) > 2.5 then return DropPlayer(src, "Attempted exploit abuse") end
+    --if #(playerCoords - targetCoords) > 2.5 then return DropPlayer(src, "Attempted exploit abuse") end
 
     local Player = QBCore.Functions.GetPlayer(source)
     local EscortPlayer = QBCore.Functions.GetPlayer(playerId)
@@ -690,11 +690,11 @@ RegisterNetEvent('police:server:SetPlayerOutVehicle', function(playerId)
     local EscortPlayer = QBCore.Functions.GetPlayer(playerId)
     if not QBCore.Functions.GetPlayer(src) or not EscortPlayer then return end
 
-    if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
+    --if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
         TriggerClientEvent("police:client:SetOutVehicle", EscortPlayer.PlayerData.source)
-    else
-        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.not_cuffed_dead"), 'error')
-    end
+    --else
+        --TriggerClientEvent('QBCore:Notify', src, Lang:t("error.not_cuffed_dead"), 'error')
+    --end
 end)
 
 RegisterNetEvent('police:server:PutPlayerInVehicle', function(playerId)
@@ -708,11 +708,11 @@ RegisterNetEvent('police:server:PutPlayerInVehicle', function(playerId)
     local EscortPlayer = QBCore.Functions.GetPlayer(playerId)
     if not QBCore.Functions.GetPlayer(src) or not EscortPlayer then return end
 
-    if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
+    -- if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
         TriggerClientEvent("police:client:PutInVehicle", EscortPlayer.PlayerData.source)
-    else
-        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.not_cuffed_dead"), 'error')
-    end
+    --else
+        --TriggerClientEvent('QBCore:Notify', src, Lang:t("error.not_cuffed_dead"), 'error')
+    --end
 end)
 
 RegisterNetEvent('police:server:BillPlayer', function(playerId, price)

@@ -154,41 +154,9 @@ RegisterNetEvent('police:client:UpdateBlips', function(players)
 end)
 
 RegisterNetEvent('police:client:policeAlert', function(coords, text)
-    local street1, street2 = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
-    local street1name = GetStreetNameFromHashKey(street1)
-    local street2name = GetStreetNameFromHashKey(street2)
-    QBCore.Functions.Notify({text = text, caption = street1name.. ' ' ..street2name}, 'police')
-    PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
-    local transG = 250
-    local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
-    local blip2 = AddBlipForCoord(coords.x, coords.y, coords.z)
-    local blipText = Lang:t('info.blip_text', {value = text})
-    SetBlipSprite(blip, 60)
-    SetBlipSprite(blip2, 161)
-    SetBlipColour(blip, 1)
-    SetBlipColour(blip2, 1)
-    SetBlipDisplay(blip, 4)
-    SetBlipDisplay(blip2, 8)
-    SetBlipAlpha(blip, transG)
-    SetBlipAlpha(blip2, transG)
-    SetBlipScale(blip, 0.8)
-    SetBlipScale(blip2, 2.0)
-    SetBlipAsShortRange(blip, false)
-    SetBlipAsShortRange(blip2, false)
-    PulseBlip(blip2)
-    BeginTextCommandSetBlipName('STRING')
-    AddTextComponentString(blipText)
-    EndTextCommandSetBlipName(blip)
-    while transG ~= 0 do
-        Wait(180 * 4)
-        transG = transG - 1
-        SetBlipAlpha(blip, transG)
-        SetBlipAlpha(blip2, transG)
-        if transG == 0 then
-            RemoveBlip(blip)
-            return
-        end
-    end
+
+    exports['ps-dispatch']:OfficerDown()
+
 end)
 
 RegisterNetEvent('police:client:SendToJail', function(time)
@@ -201,9 +169,12 @@ RegisterNetEvent('police:client:SendToJail', function(time)
 end)
 
 RegisterNetEvent('police:client:SendPoliceEmergencyAlert', function()
-    local Player = QBCore.Functions.GetPlayerData()
-    TriggerServerEvent('police:server:policeAlert', Lang:t('info.officer_down', {lastname = Player.charinfo.lastname, callsign = Player.metadata.callsign}))
-    TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.officer_down', {lastname = Player.charinfo.lastname, callsign = Player.metadata.callsign}))
+    --local Player = QBCore.Functions.GetPlayerData()
+    
+    exports['ps-dispatch']:OfficerDown()
+
+    --TriggerServerEvent('police:server:policeAlert', Lang:t('info.officer_down', {lastname = Player.charinfo.lastname, callsign = Player.metadata.callsign}))
+    --TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.officer_down', {lastname = Player.charinfo.lastname, callsign = Player.metadata.callsign}))
 end)
 
 -- Threads
